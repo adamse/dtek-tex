@@ -1,14 +1,15 @@
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{dtek}
+\ProvidesClass{dtek}[2013/04/07 Datateknologsektionen Chalmers]
 
 
 \LoadClass[12pt]{scrartcl}
 
-\RequirePackage{fontspec}
+\RequirePackage[quiet]{fontspec}
 \RequirePackage{graphicx}
+\RequirePackage{xcolor}
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
-\RequirePackage{datetime}
+\RequirePackage[swedish, iso]{isodate}
 \RequirePackage{calc}
 
 \RequirePackage[unicode]{hyperref}
@@ -16,12 +17,14 @@
 \RequirePackage[includeheadfoot, top=2.0cm, bottom=3cm]{geometry}
 
 % Remove the numbers from all the headings (\section, \subsection, etc.)
-\setcounter{secnumdepth}{-1}
+%\setcounter{secnumdepth}{-1}
 \addtokomafont{disposition}{\rmfamily}
 
 
+\definecolor{links}{HTML}{0000FF}
 \hypersetup{
-  colorlinks=true
+  colorlinks,
+  urlcolor=links
 }
 
 \AtBeginDocument{
@@ -32,9 +35,6 @@
 }
 
 \pagestyle{fancy}
-
-
-\renewcommand{\dateseparator}{-}
 
 \fancyhf{}
 \newcommand{\headleft}{%
@@ -47,7 +47,7 @@ Chalmers studentkår}%
 \addtolength\headheight{0.4pt}
 \lhead{\headleft}
 
-\rhead{Sidan \thepage\ av \pageref{LastPage}\\\yyyymmdddate\@date}
+\rhead{Sidan \thepage\ av \pageref{LastPage}\\\@date}
 \renewcommand{\headrule}{
 \nointerlineskip
 \hskip 14mm\hrulefill
