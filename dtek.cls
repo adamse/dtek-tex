@@ -1,31 +1,41 @@
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{dtek}[2013/04/07 Datateknologsektionen Chalmers]
 
+\newif\ifprotokoll
+\protokollfalse
+\DeclareOption{protokoll}{%
+  \protokolltrue
+  \AtBeginDocument{%
+    {\centering \bf{\LARGE{\@title\ \@date}}\par}
+    
+    Kl: \@start\\
+    Mötesnummer: \@motesnummer\ - \@verksamhetsar\\
+    Plats: \@plats
+  }
+}
 
-\LoadClass[12pt]{scrartcl}
+\newif\iftwojust
+\twojustfalse
+\DeclareOption{twojust}{\twojusttrue}
+
+\newif\ifincludeaddress
+\includeaddressfalse
+\DeclareOption{includeaddress}{\includeaddresstrue}
+
+\ProcessOptions\relax
+
+\LoadClass[12pt]{article}
 
 \RequirePackage[quiet]{fontspec}
+\RequirePackage{parskip}
 \RequirePackage{graphicx}
 \RequirePackage{xcolor}
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 \RequirePackage[swedish, iso]{isodate}
 \RequirePackage{calc}
-
 \RequirePackage[unicode]{hyperref}
-
-\RequirePackage[includeheadfoot, top=2.0cm, bottom=3cm]{geometry}
-
-% Remove the numbers from all the headings (\section, \subsection, etc.)
-%\setcounter{secnumdepth}{-1}
-\addtokomafont{disposition}{\rmfamily}
-
-
-\definecolor{links}{HTML}{0000FF}
-\hypersetup{
-  colorlinks,
-  urlcolor=links
-}
+\RequirePackage[includeheadfoot, top=2.0cm, bottom=4cm]{geometry}
 
 \AtBeginDocument{
   \hypersetup{
@@ -34,23 +44,112 @@
   }
 }
 
+\RequirePackage{xparse}
+\NewDocumentCommand\defineVariable{mm}{%
+  \global\expandafter\NewDocumentCommand\csname#1\endcsname{}{#2}
+}
+
+\NewDocumentCommand\funktionar{ommm}{%
+\IfNoValueTF {#1}
+  {}
+  {\global\expandafter\def\csname #1\endcsname{#3}}
+  #2 & #3 & #4\\
+ }
+
+\newcommand{\motesnummer}[1]{\@namedef{@motesnummer}{#1}}
+\newcommand{\verksamhetsar}[1]{\@namedef{@verksamhetsar}{#1}}
+\newcommand{\start}[1]{\@namedef{@start}{#1}}
+\newcommand{\plats}[1]{\@namedef{@plats}{#1}}
+
+\newenvironment{funktionarer}%
+{Närvarande:\\
+\begin{tabular}{l l l}
+  \itshape Funktion & \itshape Namn & \itshape E-mail\\}%
+{\end{tabular}}
+
+% Set up headers
+
 \pagestyle{fancy}
-
 \fancyhf{}
+
 \newcommand{\headleft}{%
-\raisebox{-3mm}{\includegraphics[width=14mm]{dteklogo}}\hspace{1mm}
-\parbox[b]{5cm}{Datateknologsektionen\\
-Chalmers studentkår}%
+  \raisebox{-3mm}{\includegraphics[width=16mm]{dteklogo}}\hspace{1mm}
+  \parbox[b]{10cm}{%
+    \textbf{Datateknologsektionen}\\
+    Chalmers studentkår\\
+    \@title
+  }
+}
+\newcommand{\headright}{%
+  Sidan \thepage\ av \pageref{LastPage}\\
+  \@date
+  \ifprotokoll
+    \\ Mötesnr. \@motesnummer\ - \@verksamhetsar
+  \fi
 }
 
+% Calculate header height
 \settototalheight\headheight{\headleft}
-\addtolength\headheight{0.4pt}
-\lhead{\headleft}
+\addtolength\headheight{1.0pt}
 
-\rhead{Sidan \thepage\ av \pageref{LastPage}\\\@date}
+\lhead{\headleft}
+\rhead{\headright}
+
 \renewcommand{\headrule}{
-\nointerlineskip
-\hskip 14mm\hrulefill
+  \nointerlineskip
+  \hskip 16mm\hrulefill
 }
+
+\ifincludeaddress
+  \renewcommand{\footrulewidth}{\headrulewidth}
+
+  \lfoot{%
+    \flushleft Datateknologsektionen\\
+    Rännvägen 8\\
+    412 96 Göteborg
+  }
+  
+  \rfoot{%
+    \begin{flushright}
+      \href{mailto:styret@dtek.se}{styret@dtek.se}\\
+      \href{http://dtek.se}{www.dtek.se}
+    \end{flushright}
+  }
+  
+\fi
+
+% protokoll contains signatures in footer
+\ifprotokoll
+%\renewcommand{\footrulewidth}{\headrulewidth}
+
+\cfoot{%
+  \vspace{0.55cm}
+  \parbox{26pt}{%
+    \centering
+    \rule{25pt}{0.5pt}\\
+    Sekr.
+  }
+  \hspace{1pt}
+  \parbox{26pt}{%
+    \centering
+    \rule{25pt}{0.5pt}\\
+    Ordf.
+  }
+  \hspace{1pt}
+  \iftwojust
+  \parbox{54pt}{%
+    \centering
+    \rule{25pt}{0.5pt}\hspace{4pt}\rule{25pt}{0.5pt}\\
+    Justerare
+  }
+  \else
+  \parbox{26pt}{%
+    \centering
+    \rule{25pt}{0.5pt}\\
+    Just.
+  }
+  \fi
+}
+\fi
 
 \endinput
