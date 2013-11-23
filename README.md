@@ -7,7 +7,7 @@ Class options
 ### `protokoll`
 
 * Används för protokoll
-* Specificera \title, \date, \start (mötestid), \plats, \motesnummer och \verksamhetsar
+* Specificera `\title`, `\date`, `\start` (mötestid), `\plats`, `\motesnummer` och `\verksamhetsar`.
 
 Inkluderar plats för signaturer i sidfoten och mötesnummer och verksamhetsår i sidhuvudet.
 
