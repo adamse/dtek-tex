@@ -3,16 +3,7 @@
 
 \newif\ifprotokoll
 \protokollfalse
-\DeclareOption{protokoll}{%
-  \protokolltrue
-  \AtBeginDocument{%
-    {\centering \bf{\LARGE{\@title\ \@date}}\par}
-    
-    Kl: \@start\\
-    Mötesnummer: \@motesnummer\ - \@verksamhetsar\\
-    Plats: \@plats
-  }
-}
+\DeclareOption{protokoll}{\protokolltrue}
 
 \newif\iftwojust
 \twojustfalse
@@ -36,17 +27,13 @@
 \RequirePackage{calc}
 \RequirePackage[unicode]{hyperref}
 \RequirePackage[includeheadfoot, top=2.0cm, bottom=4cm]{geometry}
+\RequirePackage{xparse}
 
 \AtBeginDocument{
   \hypersetup{
     pdftitle = {\@title},
     pdfauthor = {\@author}
   }
-}
-
-\RequirePackage{xparse}
-\NewDocumentCommand\defineVariable{mm}{%
-  \global\expandafter\NewDocumentCommand\csname#1\endcsname{}{#2}
 }
 
 \NewDocumentCommand\funktionar{ommm}{%
@@ -62,10 +49,17 @@
 \newcommand{\plats}[1]{\@namedef{@plats}{#1}}
 
 \newenvironment{funktionarer}%
-{Närvarande:\\
+{Närvarande:
+
 \begin{tabular}{l l l}
   \itshape Funktion & \itshape Namn & \itshape E-mail\\}%
 {\end{tabular}}
+
+\renewcommand{\maketitle}{%
+  {\centering \bf{\LARGE{\@title}}\par}
+  {\centering \@date\par}
+  \vspace{1cm}
+}
 
 % Set up headers
 
@@ -118,8 +112,15 @@
   
 \fi
 
-% protokoll contains signatures in footer
 \ifprotokoll
+  \renewcommand{\maketitle}{%
+    {\centering \bf{\LARGE{\@title\ \@date}}\par}
+    
+    Kl: \@start\\
+    Mötesnummer: \@motesnummer\ - \@verksamhetsar\\
+    Plats: \@plats
+  }
+
 %\renewcommand{\footrulewidth}{\headrulewidth}
 
 \cfoot{%
