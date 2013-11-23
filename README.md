@@ -39,6 +39,12 @@ Används för protkoll.
 Skapar skriver ut titel och datum för dokumentet. För `protokoll` inkluderas
 även \plats och \start i titeln.
 
+### `\makesigns`
+
+Används för protkoll i slutet av dokumentet. Skapar plats för signaturer.
+
+Kräver att `\sekr`, `\ordf` och `\just` eller i fallet där `twojust` är satt: `\justone` och `\justtwo`  är definerade (se nedan: `\funktionar`).
+
 ### `\funktionar`
 
 Specificerar en funktionär som visas i närvarolistan för ett `protokoll`, används tillsammans med `funktionarer` nedan.
@@ -56,5 +62,3 @@ Syntax:
     \begin{funktionarer}
       \funktionar[sekr]{Sekreterare}{Adam Sandberg Eriksson}{saadam}
     \end{funktionarer}
-
-

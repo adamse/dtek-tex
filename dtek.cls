@@ -121,6 +121,41 @@
     Plats: \@plats
   }
 
+  \newcommand{\makesigns}{%
+    \parbox{\textwidth}{%
+      \parbox{250pt}{%
+        \vspace{2cm}
+        \rule{250pt}{0.5pt}\\
+        Sekreterare \sekr{}
+      }
+      
+      \parbox{250pt}{%
+        \vspace{2cm}
+        \rule{250pt}{0.5pt}\\
+        Mötesordförande \ordf{}
+      }
+      
+      \iftwojust
+        \parbox{250pt}{%
+          \vspace{2cm}
+          \rule{250pt}{0.5pt}\\
+          Justerare \justone{}
+        }
+        \parbox{250pt}{%
+          \vspace{2cm}
+          \rule{250pt}{0.5pt}\\
+          Justerare \justtwo{}
+        }
+      \else
+        \parbox{250pt}{%
+          \vspace{2cm}
+          \rule{250pt}{0.5pt}\\
+          Justerare \just{}
+        }
+      \fi
+    }
+  }
+
 %\renewcommand{\footrulewidth}{\headrulewidth}
 
 \cfoot{%
