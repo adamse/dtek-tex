@@ -43,19 +43,29 @@
   #2 & #3 & #4\\
  }
 
-\newcommand{\motesnummer}[1]{\@namedef{@motesnummer}{#1}}
-\newcommand{\verksamhetsar}[1]{\@namedef{@verksamhetsar}{#1}}
-\newcommand{\start}[1]{\@namedef{@start}{#1}}
-\newcommand{\plats}[1]{\@namedef{@plats}{#1}}
+\DeclareDocumentCommand \motesnummer {m}{%
+  \DeclareDocumentCommand \@motesnummer {}{#1}
+}
+\DeclareDocumentCommand \verksamhetsar {m}{%
+  \DeclareDocumentCommand \@verksamhetsar {}{#1}
+}
+\DeclareDocumentCommand \start {m}{%
+  \DeclareDocumentCommand \@start {}{#1}
+}
+\DeclareDocumentCommand \plats {m}{%
+  \DeclareDocumentCommand \@plats {}{#1}
+}
 
-\newenvironment{funktionarer}%
-{Närvarande:
+\DeclareDocumentEnvironment {funktionarer}{}{%
+  Närvarande:
+  
+  \begin{tabular}{l l l}
+    \itshape Funktion & \itshape Namn & \itshape E-mail\\
+}{%
+  \end{tabular}
+}
 
-\begin{tabular}{l l l}
-  \itshape Funktion & \itshape Namn & \itshape E-mail\\}%
-{\end{tabular}}
-
-\renewcommand{\maketitle}{%
+\DeclareDocumentCommand \maketitle {}{%
   {\centering \bf{\LARGE{\@title}}\par}
   {\centering \@date\par}
   \vspace{1cm}
@@ -109,11 +119,10 @@
       \href{http://dtek.se}{www.dtek.se}
     \end{flushright}
   }
-  
 \fi
 
 \ifprotokoll
-  \renewcommand{\maketitle}{%
+  \DeclareDocumentCommand \maketitle {}{%
     {\centering \bf{\LARGE{\@title\ \@date}}\par}
     
     Kl: \@start\\
@@ -121,71 +130,66 @@
     Plats: \@plats
   }
 
-  \newcommand{\makesigns}{%
+  \DeclareDocumentCommand \makesigns {m m o o}{%
     \parbox{\textwidth}{%
       \parbox{250pt}{%
         \vspace{2cm}
         \rule{250pt}{0.5pt}\\
-        Sekreterare \sekr{}
+        Sekreterare #1
       }
       
       \parbox{250pt}{%
         \vspace{2cm}
         \rule{250pt}{0.5pt}\\
-        Mötesordförande \ordf{}
+        Mötesordförande #2
       }
-      
-      \iftwojust
+
+      \IfValueTF{#3}{%
         \parbox{250pt}{%
           \vspace{2cm}
           \rule{250pt}{0.5pt}\\
-          Justerare \justone{}
+          Justerare #3
         }
+      }{}
+
+      \IfValueTF{#4}{%
         \parbox{250pt}{%
           \vspace{2cm}
           \rule{250pt}{0.5pt}\\
-          Justerare \justtwo{}
+          Justerare #4
         }
-      \else
-        \parbox{250pt}{%
-          \vspace{2cm}
-          \rule{250pt}{0.5pt}\\
-          Justerare \just{}
-        }
-      \fi
+      }{}
     }
   }
 
-%\renewcommand{\footrulewidth}{\headrulewidth}
-
-\cfoot{%
-  \vspace{0.55cm}
-  \parbox{26pt}{%
-    \centering
-    \rule{25pt}{0.5pt}\\
-    Sekr.
+  \cfoot{%
+    \vspace{0.55cm}
+    \parbox{26pt}{%
+      \centering
+      \rule{25pt}{0.5pt}\\
+      Sekr.
+    }
+    \hspace{1pt}
+    \parbox{26pt}{%
+      \centering
+      \rule{25pt}{0.5pt}\\
+      Ordf.
+    }
+    \hspace{1pt}
+    \iftwojust
+    \parbox{54pt}{%
+      \centering
+      \rule{25pt}{0.5pt}\hspace{4pt}\rule{25pt}{0.5pt}\\
+      Justerare
+    }
+    \else
+    \parbox{26pt}{%
+      \centering
+      \rule{25pt}{0.5pt}\\
+      Just.
+    }
+    \fi
   }
-  \hspace{1pt}
-  \parbox{26pt}{%
-    \centering
-    \rule{25pt}{0.5pt}\\
-    Ordf.
-  }
-  \hspace{1pt}
-  \iftwojust
-  \parbox{54pt}{%
-    \centering
-    \rule{25pt}{0.5pt}\hspace{4pt}\rule{25pt}{0.5pt}\\
-    Justerare
-  }
-  \else
-  \parbox{26pt}{%
-    \centering
-    \rule{25pt}{0.5pt}\\
-    Just.
-  }
-  \fi
-}
 \fi
 
 \endinput

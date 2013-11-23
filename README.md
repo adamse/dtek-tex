@@ -43,7 +43,9 @@ Skapar skriver ut titel och datum för dokumentet. För `protokoll` inkluderas
 
 Används för protkoll i slutet av dokumentet. Skapar plats för signaturer.
 
-Kräver att `\sekr`, `\ordf` och `\just` eller i fallet där `twojust` är satt: `\justone` och `\justtwo`  är definerade (se nedan: `\funktionar`).
+Syntax: `\makesigns{sekreterare}{ordförande}[justerare1][justerare2]`.
+
+`justerare1` och `justerare2` är valfria argument.
 
 ### `\funktionar`
 
