@@ -1,66 +1,44 @@
-Datateknologsektionens LaTeX-klass
-==================================
+Datateknologsektionens LaTeX-klasser
+====================================
 
-Class options
--------------
+# `dtek` class
 
-### `protokoll`
+Inkluderar sektionens logotyp, `\title` och `\date` i sidhuvudet.
 
-* Används för protokoll
-* Specificera `\title`, `\date`, `\start` (mötestid), `\plats`, `\motesnummer` och `\verksamhetsar`.
+## Options
 
-Inkluderar plats för signaturer i sidfoten och mötesnummer och verksamhetsår i sidhuvudet.
+Väljs när man laddar klassen
 
-### `twojust`
+    \documentclass[options]{dtek}
 
-Används tillsammans med `protokoll` och ger plats åt två justeringssignaturer.
+* `includeaddress`: inkluderar sektionens fysiska och digitala adresser i sidfoten
 
-### `includeaddress`
+## Kommandon
 
-Inkluderar Datateknologsektionens address i sidfoten.
+* `\maketitle`: skriver ut titel och datum, giva av `\title{}` och `\date{}`.
+* `\makesign{Namn}`: rad för signatur med "Namn" under.
 
-Kommandon och environments
---------------------------
 
-### `\title`
+# `dtekprotokoll` class
 
-Specificerar dokumentets titel. Syns i sidhuvudet och om `\maketitle` används.
+Utöver det som nämns ovan inkluderar denna klassen `\motesnummer` och `\verksamhetsar` i sidhuvudet samt plats för signaturer i sidfoten.
 
-### `\date`
+## Options
 
-För protokoll specificerar `\date` mötesdatum. För andra dokument är det ändrings/publiceringsdatum.
+* `twojust`: används för protokoll som kräver två justerare.
 
-### `\plats`, `\motesnummer` och `\verksamhetsar`
+## `funktionarer`
 
-Används för protkoll.
-
-### `\maketitle`
-
-Skapar skriver ut titel och datum för dokumentet. För `protokoll` inkluderas
-även \plats och \start i titeln.
-
-### `\makesigns`
-
-Används för protkoll i slutet av dokumentet. Skapar plats för signaturer.
-
-Syntax: `\makesigns{sekreterare}{ordförande}[justerare1][justerare2]`.
-
-`justerare1` och `justerare2` är valfria argument.
-
-### `\funktionar`
-
-Specificerar en funktionär som visas i närvarolistan för ett `protokoll`, används tillsammans med `funktionarer` nedan.
-
-Syntax: `\funktionar[snabbkommando]{funktion}{namn}{email}`
-
-Om man specificerar det optionella argumentet "snabbkommando" kommer det att skapas ett `\snabbkommando` som expander till `namn`.
-
-### `funktionarer`
-
-En "environment", efter `\maketitle`. Används för att skapa en närvarolista.
-
-Syntax:
+Environment som används för att skapa en närvarolista.
 
     \begin{funktionarer}
       \funktionar[sekr]{Sekreterare}{Adam Sandberg Eriksson}{saadam}
     \end{funktionarer}
+
+## Kommandon
+
+* `\plats`, `\motesnummer` och `\verksamhetsar`: måste anges.
+
+* `\funktionar[snabbkommando]{funktion}{namn}{email}`: Används bara med `funktionarer` ovan. Om man tar med `[snabbkommande]` skapas `\snabbkommando` som expanderar till `namn`.
+
+* `\makesigns{sekreterare}{ordförande}[justerare1][justerare2]`: I slutet av protokollet, för signaturrader.
