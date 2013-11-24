@@ -104,6 +104,14 @@
   \hskip 16mm\hrulefill
 }
 
+\DeclareDocumentCommand \makesign {m} {%
+  \parbox{0.47\textwidth}{%
+    \vspace{2cm}
+    \rule{0.47\textwidth}{0.5pt}\\
+    #1
+  }
+}
+
 \ifincludeaddress
   \renewcommand{\footrulewidth}{\headrulewidth}
 
@@ -132,32 +140,16 @@
 
   \DeclareDocumentCommand \makesigns {m m o o}{%
     \parbox{\textwidth}{%
-      \parbox{250pt}{%
-        \vspace{2cm}
-        \rule{250pt}{0.5pt}\\
-        Sekreterare #1
-      }
+      \makesign{Sekreterare #1}
       
-      \parbox{250pt}{%
-        \vspace{2cm}
-        \rule{250pt}{0.5pt}\\
-        Mötesordförande #2
-      }
+      \makesign{Mötesordförande #2}
 
       \IfValueTF{#3}{%
-        \parbox{250pt}{%
-          \vspace{2cm}
-          \rule{250pt}{0.5pt}\\
-          Justerare #3
-        }
+        \makesign{Justerare #3}
       }{}
 
       \IfValueTF{#4}{%
-        \parbox{250pt}{%
-          \vspace{2cm}
-          \rule{250pt}{0.5pt}\\
-          Justerare #4
-        }
+        \makesign{Justerare #4}
       }{}
     }
   }
@@ -177,17 +169,17 @@
     }
     \hspace{1pt}
     \iftwojust
-    \parbox{54pt}{%
-      \centering
-      \rule{25pt}{0.5pt}\hspace{4pt}\rule{25pt}{0.5pt}\\
-      Justerare
-    }
+      \parbox{54pt}{%
+        \centering
+        \rule{25pt}{0.5pt}\hspace{4pt}\rule{25pt}{0.5pt}\\
+        Justerare
+      }
     \else
-    \parbox{26pt}{%
-      \centering
-      \rule{25pt}{0.5pt}\\
-      Just.
-    }
+      \parbox{26pt}{%
+        \centering
+        \rule{25pt}{0.5pt}\\
+        Just.
+      }
     \fi
   }
 \fi
