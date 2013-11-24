@@ -1,11 +1,11 @@
 Datateknologsektionens LaTeX-klasser
 ====================================
 
-# `dtek` class
+## `dtek` class
 
 Inkluderar sektionens logotyp, `\title` och `\date` i sidhuvudet.
 
-## Options
+### Options
 
 Väljs när man laddar klassen
 
@@ -13,21 +13,21 @@ Väljs när man laddar klassen
 
 * `includeaddress`: inkluderar sektionens fysiska och digitala adresser i sidfoten
 
-## Kommandon
+### Kommandon
 
-* `\maketitle`: skriver ut titel och datum, giva av `\title{}` och `\date{}`.
+* `\maketitle`: skriver ut titel och datum, givna av `\title{}` och `\date{}`.
 * `\makesign{Namn}`: rad för signatur med "Namn" under.
 
 
-# `dtekprotokoll` class
+## `dtekprotokoll` class
 
 Utöver det som nämns ovan inkluderar denna klassen `\motesnummer` och `\verksamhetsar` i sidhuvudet samt plats för signaturer i sidfoten.
 
-## Options
+### Options
 
 * `twojust`: används för protokoll som kräver två justerare.
 
-## `funktionarer`
+### `funktionarer`
 
 Environment som används för att skapa en närvarolista.
 
@@ -35,7 +35,7 @@ Environment som används för att skapa en närvarolista.
       \funktionar[sekr]{Sekreterare}{Adam Sandberg Eriksson}{saadam}
     \end{funktionarer}
 
-## Kommandon
+### Kommandon
 
 * `\plats`, `\motesnummer` och `\verksamhetsar`: måste anges.
 
