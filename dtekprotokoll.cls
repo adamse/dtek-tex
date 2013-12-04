@@ -72,38 +72,42 @@
   }
 }
 
-\cfoot{%
-  \vspace{0.55cm}
-  \parbox{26pt}{%
-    \centering
-    \rule{25pt}{0.5pt}\\
-    Sekr.
-  }
-  \hspace{1pt}
-  \parbox{26pt}{%
-    \centering
-    \rule{25pt}{0.5pt}\\
-    Ordf.
-  }
-  \hspace{1pt}
-  \iftwojust
-    \parbox{54pt}{%
-      \centering
-      \rule{25pt}{0.5pt}\hspace{4pt}\rule{25pt}{0.5pt}\\
-      Justerare
-    }
-  \else
+\RenewDocumentCommand \makeheadfoot {}{%
+  \@makehf
+
+  \cfoot{%
+    \vspace{0.55cm}
     \parbox{26pt}{%
       \centering
       \rule{25pt}{0.5pt}\\
-      Just.
+      Sekr.
     }
-  \fi
-}
-\rhead{%
-  Sidan \thepage\ av \pageref{LastPage}\\
-  \@date \\
-  Mötesnr. \@motesnummer\ - \@verksamhetsar
+    \hspace{1pt}
+    \parbox{26pt}{%
+      \centering
+      \rule{25pt}{0.5pt}\\
+      Ordf.
+    }
+    \hspace{1pt}
+    \iftwojust
+      \parbox{54pt}{%
+        \centering
+        \rule{25pt}{0.5pt}\hspace{4pt}\rule{25pt}{0.5pt}\\
+        Justerare
+      }
+    \else
+      \parbox{26pt}{%
+        \centering
+        \rule{25pt}{0.5pt}\\
+        Just.
+      }
+    \fi
+  }
+  \rhead{%
+    Sidan \thepage\ av \pageref{LastPage}\\
+    \@date \\
+    Mötesnr. \@motesnummer\ - \@verksamhetsar
+  }
 }
 
 \endinput
