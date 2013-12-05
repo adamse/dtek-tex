@@ -34,8 +34,6 @@
 }
 
 \DeclareDocumentEnvironment {funktionarer} {} {%
-  Närvarande:
-  
   \begin{tabular}{l l l}
     \itshape Funktion & \itshape Namn & \itshape E-mail\\
 }{%
@@ -58,6 +56,7 @@
 
 \DeclareDocumentCommand \makesigns {m m o o} {%
   \parbox{\textwidth}{%
+    \vspace{1cm}
     \makesign{Sekreterare #1}
     
     \makesign{Mötesordförande #2}
