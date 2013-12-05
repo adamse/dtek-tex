@@ -7,7 +7,7 @@
 
 \ProcessOptions\relax
 
-\LoadClass[12pt]{article}
+\LoadClass[10pt]{article}
 
 \RequirePackage[quiet]{fontspec}
 \RequirePackage{parskip}
