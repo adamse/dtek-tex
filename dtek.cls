@@ -20,18 +20,13 @@
 \RequirePackage[unicode]{hyperref}
 \RequirePackage[includeheadfoot, top=2.0cm, bottom=4cm]{geometry}
 \RequirePackage{xparse}
+\RequirePackage{titling}
 
 \AtBeginDocument{
   \hypersetup{
     pdftitle = {\@title},
     pdfauthor = {\@author}
   }
-}
-
-\DeclareDocumentCommand \maketitle {}{%
-  {\centering \bf{\LARGE{\@title}}\par}
-  {\centering \@date\par}
-  \vspace{1cm}
 }
 
 % Set up headers
