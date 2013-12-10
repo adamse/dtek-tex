@@ -20,7 +20,7 @@
 \RequirePackage[unicode]{hyperref}
 \RequirePackage[includeheadfoot, top=2.0cm, bottom=4cm]{geometry}
 \RequirePackage{xparse}
-\RequirePackage{titling}
+\RequirePackage{verbatim}
 
 \AtBeginDocument{
   \hypersetup{

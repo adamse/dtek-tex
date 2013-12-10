@@ -13,6 +13,9 @@
 
 \LoadClass{dtek}
 
+\RequirePackage{tocloft}
+\RequirePackage{pdfpages}
+
 \DeclareDocumentCommand \motesnummer {m} {%
   \DeclareDocumentCommand \@motesnummer {}{#1}
 }
@@ -40,10 +43,12 @@
   \end{tabular}
 }
 
-\DeclareDocumentCommand \beslut {} {%
-  \begin{flushright}
-    \textbf{[Beslut]}
-  \end{flushright}
+\DeclareDocumentCommand \beslut {m} {%
+  \leavevmode\marginpar{\textbf{Beslut}}#1%
+}
+
+\DeclareDocumentCommand \anm {m} {%
+  \leavevmode\marginpar{\textbf{Anm.}}#1%
 }
 
 \DeclareDocumentCommand \maketitle {} {%
@@ -52,6 +57,18 @@
   Kl: \@start\\
   Mötesnummer: \@motesnummer\ - \@verksamhetsar\\
   Plats: \@plats
+}
+
+\newlistof{bilagor}{bil}{Bilagor}
+
+% \makebilaga{kortnamn}{Ett längre namn}{filnamn}
+\DeclareDocumentCommand \makebilaga {m m m}{%
+  \includepdf[pages=-,addtolist={1,bilagor,#2,bil:#1}]{#3}
+}
+
+% \bilaga{kortnamn} Referera till en bilaga
+\DeclareDocumentCommand \bilaga {m}{%
+  \hyperref[bil:#1]{bilaga \ref*{bil:#1}}%
 }
 
 \DeclareDocumentCommand \makesigns {m m o o} {%
