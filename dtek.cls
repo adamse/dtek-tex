@@ -2,8 +2,8 @@
 \ProvidesClass{dtek}[2013/04/07 Datateknologsektionen Chalmers]
 
 \newif\ifincludeaddress
-\includeaddressfalse
-\DeclareOption{includeaddress}{\includeaddresstrue}
+\includeaddresstrue
+\DeclareOption{noincludeaddress}{\includeaddressfalse}
 
 \ProcessOptions\relax
 
