@@ -12,7 +12,6 @@
 \RequirePackage[quiet]{fontspec}
 \RequirePackage{parskip}
 \RequirePackage{graphicx}
-\RequirePackage{xcolor}
 \RequirePackage{fancyhdr}
 \RequirePackage{lastpage}
 \RequirePackage[swedish, iso]{isodate}
@@ -20,7 +19,8 @@
 \RequirePackage[unicode]{hyperref}
 \RequirePackage[includeheadfoot, top=2.0cm, bottom=4cm]{geometry}
 \RequirePackage{xparse}
-\RequirePackage{titling}
+
+\RequirePackage{pdfpages}
 
 \AtBeginDocument{
   \hypersetup{
