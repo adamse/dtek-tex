@@ -44,7 +44,7 @@
     }
   }
   \newcommand{\headright}{%
-    Sidan \thepage\ av \pageref{LastPage}\\
+    Sida \thepage\ av \pageref{LastPage}\\
     \@date
   }
   
