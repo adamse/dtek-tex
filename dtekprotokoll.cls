@@ -43,11 +43,15 @@
 }
 
 \DeclareDocumentCommand \beslut {m} {%
-  \leavevmode\marginpar{\textbf{Beslut}}#1%
+  \leavevmode\marginnote{beslut}#1%
 }
 
 \DeclareDocumentCommand \anm {m} {%
-  \leavevmode\marginpar{\textbf{Anm.}}#1%
+  \leavevmode\marginnote{anm.}#1%
+}
+
+\DeclareDocumentCommand \marginnote {m} {%
+  \marginpar{\small{\textbg{#1}}}%
 }
 
 \DeclareDocumentCommand \maketitle {} {%
@@ -64,7 +68,6 @@
 \DeclareDocumentCommand \makebilaga {m m m}{%
   \includepdf[ pages=-
              , addtolist={1,bilagor,#2,bil:#1}
-             , openright=true
   ]{#3}
 }
 
