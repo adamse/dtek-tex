@@ -51,7 +51,7 @@
 }
 
 \DeclareDocumentCommand \marginnote {m} {%
-  \marginpar{\small{\textbg{#1}}}%
+  \marginpar{\small{\textbf{#1}}}%
 }
 
 \DeclareDocumentCommand \maketitle {} {%
