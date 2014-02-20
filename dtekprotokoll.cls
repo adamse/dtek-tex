@@ -14,7 +14,6 @@
 
 \RequirePackage{tocloft}
 
-
 \DeclareDocumentCommand \motesnummer {m} {%
   \DeclareDocumentCommand \@motesnummer {}{#1}
 }
