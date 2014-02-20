@@ -43,11 +43,11 @@
 }
 
 \DeclareDocumentCommand \beslut {m} {%
-  \leavevmode\marginnote{beslut}#1%
+  \leavevmode\marginnote{Beslut}#1%
 }
 
 \DeclareDocumentCommand \anm {m} {%
-  \leavevmode\marginnote{anm.}#1%
+  \leavevmode\marginnote{Anm.}#1%
 }
 
 \DeclareDocumentCommand \marginnote {m} {%
@@ -94,7 +94,7 @@
 }
 
 \RenewDocumentCommand \makeheadfoot {}{%
-  \@makehf
+  \makehf
 
   \cfoot{%
     \vspace{0.55cm}

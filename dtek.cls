@@ -13,12 +13,12 @@
 \RequirePackage{parskip}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
-\RequirePackage{lastpage}
 \RequirePackage[swedish, iso]{isodate}
-\RequirePackage{calc}
+\RequirePackage{lastpage}
 \RequirePackage[unicode]{hyperref}
 \RequirePackage[includeheadfoot, top=2.0cm, bottom=4cm]{geometry}
 \RequirePackage{xparse}
+\RequirePackage{etoolbox}
 
 \RequirePackage{pdfpages}
 
@@ -29,9 +29,18 @@
   }
 }
 
+\DeclareDocumentCommand \subtitle {m} {%
+  \DeclareDocumentCommand \@subtitle {}{#1}
+}
+
+\DeclareDocumentCommand \maketitle {} {%
+  {\centering\bf\LARGE \@title\par}
+  \ifdef{\@subtitle}{{\centering\Large \@subtitle\par}}{}
+}
+
 % Set up headers
 
-\DeclareDocumentCommand \@makehf {}{%
+\DeclareDocumentCommand \makehf {}{%
   \pagestyle{fancy}
   \fancyhf{}
   
@@ -67,7 +76,7 @@
     \lfoot{%
       \flushleft Datateknologsektionen\\
       Rännvägen 8\\
-      412 96 Göteborg
+      412 58 Göteborg
     }
     
     \rfoot{%
@@ -79,7 +88,7 @@
   \fi
 }
 
-\DeclareDocumentCommand \makeheadfoot {}{\@makehf}
+\DeclareDocumentCommand \makeheadfoot {}{\makehf}
 
 \DeclareDocumentCommand \makesign {m} {%
   \parbox{0.47\textwidth}{%
