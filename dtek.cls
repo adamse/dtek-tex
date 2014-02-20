@@ -14,6 +14,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
 \RequirePackage[swedish, iso]{isodate}
+\RequirePackage[swedish]{babel}
 \RequirePackage{lastpage}
 \RequirePackage[unicode]{hyperref}
 \RequirePackage[includeheadfoot, top=2.0cm, bottom=4cm]{geometry}
@@ -25,7 +26,12 @@
 \AtBeginDocument{
   \hypersetup{
     pdftitle = {\@title},
-    pdfauthor = {\@author}
+    pdfauthor = {\@author},
+    colorlinks=true,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=black,
+    urlcolor=black
   }
 }
 
