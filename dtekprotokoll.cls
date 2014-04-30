@@ -41,7 +41,11 @@
   \end{tabular}
 }
 
+\newlistof{beslut}{beslut}{Lista över beslut}
+
 \DeclareDocumentCommand \beslut {m} {%
+  \refstepcounter{beslut}
+  \addcontentsline{beslut}{beslut}{#1}
   \leavevmode\marginnote{Beslut}#1%
 }
 

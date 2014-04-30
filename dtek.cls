@@ -13,7 +13,6 @@
 \RequirePackage{parskip}
 \RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
-\RequirePackage[swedish, iso]{isodate}
 \RequirePackage[swedish]{babel}
 \RequirePackage{lastpage}
 \RequirePackage[unicode]{hyperref}
