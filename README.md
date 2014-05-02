@@ -1,6 +1,12 @@
 Datateknologsektionens LaTeX-klasser
 ====================================
 
+## Installation
+
+Kräver xelatex, latexmk mm för att kunna köras
+
+    make install
+
 ## `dtek` class
 
 Inkluderar sektionens logotyp, `\title` och `\date` i sidhuvudet.
