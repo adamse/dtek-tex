@@ -59,7 +59,9 @@ Förutom dessa funktioner inkluderas även;
 
 * `\start` För mötets start
 * `\plats` För mötets plats
-* `\typ` För mötets typ, denna sätts automagiskt av klassen till antingen `Dagordning styrelsemöte`, `Agenda styrelsemöte` eller `Kallelse styrelsemöte` beroende på vilket av `\agenda`, `\kallelse` eller `\dagordning` är sant (standard är bara dagordning sant).
+* `\typ` För mötets typ, denna sätts automagiskt av klassen till antingen `Dagordning`, `Agenda` eller `Kallelse` beroende på vilket av `\agenda`, `\kallelse` eller `\dagordning` är sant (standard är bara dagordning sant).
+* `\listtyp` Rubrik till föredragningslistan.
+* `\dokumenttyp` Text som följer efter `\typ` vid headers och titel
 
 ### Föredragningslista & underpunkter
 Environment som används för att skapa en föredragningslista.
