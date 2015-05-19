@@ -22,6 +22,14 @@
   \DeclareDocumentCommand \@verksamhetsar {}{#1}
 }
 
+\DeclareDocumentCommand \listtyp {m} {
+  \DeclareDocumentCommand \@listtyp {}{#1}
+}
+
+\DeclareDocumentCommand \dokumenttyp {m} {
+  \DeclareDocumentCommand \@dokumenttyp {}{#1}
+}
+
 % Deklarera mötets start
 \DeclareDocumentCommand \start {m} {
   \DeclareDocumentCommand \@start {}{#1}
@@ -38,7 +46,7 @@
   {\bf \LARGE \@title} \\[0.5cm]
   
   \begin{tabular} {l l l}
-    Tid \& datum: & \@start{} & \@date \\
+    Tid \& datum: & \@start{} & \datummote \\
     Mötesnummer: & \@motesnummer\ & \@verksamhetsar \\
     Plats: & \multicolumn{2}{l}{\@plats} \\
   \end{tabular}
@@ -72,6 +80,7 @@
 
 % Deklarerar föredragningslista som ett environment
 \DeclareDocumentEnvironment {foredragningslista} {} {%
+  \subsection*{\@listtyp}
   \begin{list}{\textbf{\arabic{enumi}.}}
     {\usecounter{enumi}
     \setlength{\leftmargin}{3.5\bigskipamount}
@@ -91,7 +100,9 @@
 }
 
 % Deklarerar kommandot punkt som en vettig grej i ett list environment
-\newcommand{\punkt}[1]{\item \textbf{#1}} 
+\DeclareDocumentCommand \punkt {m}{%
+\item \textbf{#1}
+}
 
 % Bestäm mötestyp baserat på inputparameter
 % (saxat från Johan Sjöbloms gamla kallelsemall)
@@ -100,41 +111,44 @@
 \providecommand\agenda{false}
 \providecommand\kallelse{false}
 \providecommand\dagordning{true}
+
 % Vilka fält som ska synas när 'agenda' genereras
 % Både secret och elaboration syns.
-\ifthenelse{\equal{\agenda}{true}}{
+\ifthenelse{\equal{\agenda}{true}} {
  \providecommand\elaboration{true}
  \providecommand\secret{true}
- \newcommand{\typ}{Agenda styrelsemöte}
+ \newcommand{\typ}{Agenda \@dokumenttyp}
 }{
 % Vilka fält som ska synas när 'kallelse' genereras
 % Elaboration syns, men secret syns inte.
 \ifthenelse{\equal{\kallelse}{true}}{
  \providecommand\elaboration{true}
  \providecommand\secret{false}
- \newcommand{\typ}{Kallelse styrelsemöte}
+ \newcommand{\typ}{Kallelse \@dokumenttyp}
 }{
 % Vilka fält som ska synas när 'dagordning' genereras
 % Varken secret eller elaboration syns.
  \providecommand\elaboration{false}
  \providecommand\secret{false}
- \newcommand{\typ}{Dagordning styrelsemöte}
+ \newcommand{\typ}{Dagordning \@dokumenttyp}
 }}
 
 % Fixa så elaborationkommandot genererar en text som syns
 % i kallelser och agendor, i.e när elaboration = true
 \DeclareDocumentCommand \elab {m} {%
-  \ifthenelse{ \equal{elaboration}{true}}{%
-    \\ {\it #1}}
-  {}
+  \ifthenelse{ \equal{\elaboration}{true} }{%
+    \\ {\it #1}
+  }{% Gör ingenting om inte \elaboration är sant
+  }
 }
 
 % Fixa så secretkommandot genererar en text som bara syns
 % i agendor, i.e när secret = true
 \DeclareDocumentCommand \secr {m} {%
   \ifthenelse{ \equal{\secret}{true}}{% 
-    \\ {\tt #1}}
-  {}
+    \\ {\tt #1}
+  }{% Gör ingenting om inte \secret är sant
+  }
 }
 
 % \datumiso skriver ut dagens datum på formen yyyy-mm-dd. Detta läggs
