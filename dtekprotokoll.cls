@@ -36,7 +36,7 @@
 
 \DeclareDocumentEnvironment {funktionarer} {} {%
   \begin{tabular}{l l l}
-    \itshape Funktion & \itshape Namn & \itshape E-mail\\
+    \itshape Funktion & \itshape Namn & \itshape E-mail/cid\\
 }{%
   \end{tabular}
 }
