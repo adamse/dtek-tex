@@ -59,7 +59,7 @@
 
 \DeclareDocumentCommand \maketitle {} {%
   {\centering \bf{\LARGE{\@title\ \@date}}\par}
-  
+
   Kl: \@start\\
   Mötesnummer: \@motesnummer\ - \@verksamhetsar\\
   Plats: \@plats
@@ -83,7 +83,7 @@
   \parbox{\textwidth}{%
     \vspace{1cm}
     \makesign{Sekreterare #1}
-    
+
     \makesign{Mötesordförande #2}
 
     \IfValueTF{#3}{%
