@@ -1,3 +1,4 @@
+% vim: set ft=tex:
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{dtekprotokoll}[2013/04/07 Datateknologsektionen Chalmers]
 
@@ -41,6 +42,7 @@
   \end{tabular}
 }
 
+%%% Beslutslogg %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newlistof{beslut}{beslut}{Lista över beslut}
 
 \DeclareDocumentCommand \beslut {m} {%
@@ -48,6 +50,7 @@
   \addcontentsline{beslut}{beslut}{#1}
   \leavevmode\marginnote{Beslut}#1%
 }
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \DeclareDocumentCommand \anm {m} {%
   \leavevmode\marginnote{Anm.}#1%
